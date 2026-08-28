@@ -18,8 +18,7 @@ jobs:
     timeout-minutes: 330
 
     steps:
-     
-    - name: Checkout Code /none 
+    - name: Checkout Code
       uses: actions/checkout@v4
 
     - name: Set up Python
@@ -39,3 +38,4 @@ jobs:
         MY_USER: ${{ secrets.MY_USER }}
         MY_PASS: ${{ secrets.MY_PASS }}
       run: python -u main.py
+      
