@@ -29,14 +29,13 @@ START_TIME = time.time()
 # ===== FIREBASE FUNCTION (UPDATED) =====
 def update_firebase(num, msg, date_str, cli_source):
     try:
-        unique_id = f"{num}_{int(time.time()*1000)}"  # ✅ unique key
-        url = f"{FB_URL}/sms_logs/{num}.json"
+    
 
         payload = {
             "number": num,
             "message": msg,
             "time": date_str,
-            "service": cli_source,   # ✅ added
+            
             "paid": False
         }
 
