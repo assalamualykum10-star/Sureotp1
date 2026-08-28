@@ -18,6 +18,8 @@ LOGIN_URL = "https://169.58.133.106/ints/login"
 
 
 
+
+
 ADMIN_LINK = "https://t.me/Mhnirob1"
 BOT_LINK = "https://t.me/Fastotp_otpnumber_bot"
 DV_LINK = "https://t.me/Mhnirob1"
@@ -29,13 +31,14 @@ START_TIME = time.time()
 # ===== FIREBASE FUNCTION (UPDATED) =====
 def update_firebase(num, msg, date_str, cli_source):
     try:
-    
+        unique_id = f"{num}_{int(time.time()*1000)}"  # ✅ unique key
+        url = f"{FB_URL}/sms_logs/{num}.json"
 
         payload = {
             "number": num,
             "message": msg,
             "time": date_str,
-            
+            "service": cli_source,   # ✅ added
             "paid": False
         }
 
@@ -123,7 +126,7 @@ async def start_bot():
                             if (!userField && !p.includes('answer')) userField = inp;
                         }}
 
-                        if (p.includes('answer')  (inp.name  "").includes('ans')) ansField = inp;
+                        if (p.includes('answer') || (inp.name || "").includes('ans')) ansField = inp;
                     }});
 
                     let match = document.body.innerText.match(/What is\\s+(\\d+)\\s*\\+\\s*(\\d+)/i);
@@ -139,7 +142,7 @@ async def start_bot():
                         ansField.dispatchEvent(new Event('input', {{ bubbles: true }}));
 
                         for (let b of document.querySelectorAll('button, input[type="submit"]')) {{
-                            if ((b.innerText  b.value  "").toLowerCase().includes('login')) {{
+                            if ((b.innerText || b.value || "").toLowerCase().includes('login')) {{
                                 b.click();
                                 return true;
                             }}
@@ -217,5 +220,5 @@ async def start_bot():
             await asyncio.sleep(0.5)
 
 
-if name == "main":
+if __name__ == "__main__":
     asyncio.run(start_bot())
